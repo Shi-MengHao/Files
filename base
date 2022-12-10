@@ -6,19 +6,19 @@ mburl_coding="https://monlor.coding.net/p/mbfiles/d/mbfiles/git/lfs/master"
 mburl_github="https://raw.githubusercontent.com/monlor/mbfiles/master"
 mburl_gitee="https://gitee.com/monlor/mbfiles/raw/master"
 mburl_ghcdn="https://cdn.jsdelivr.net/gh/monlor/mbfiles"
-mburl="$mburl_coding"
+mburl="https://ghproxy.com/https://raw.githubusercontent.com/monlor/mbfiles/master"
 mbroot=/userdisk/data/shadowsocks
 mbdisk=/userdisk/data/shadowsocks
-mbbackup="/etc/mbbackup"
+mbbackup="/userdisk/data/shadowsocks/mbbackup"
 [ -z "$mbdisk" ] && mbdisk="${mbroot}"
 wanip=$(ubus call network.interface.wan status 2> /dev/null | grep \"address\" | grep -oE '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}') || wanip="127.0.0.1"
 lanip=$(uci get network.lan.ipaddr 2> /dev/null) || lanip="127.0.0.1"
-profilepath=$(mbdb get mixbox.main.profilepath) 
-libpath=$(mbdb get mixbox.main.libpath) 
-mbver=$(mbdb get mixbox.main.version)
+profilepath=""
+libpath="" 
+mbver="0.1.11"
 mbtmp=/tmp/mbtmp
 [ ! -d "${mbtmp}" ] && mkdir -p ${mbtmp}
-model=$(mbdb get mixbox.main.model)
+model="linux_mips"
 xq=$(cat /proc/xiaoqiang/model 2> /dev/null) || xq="$(uname -s)"
 
 source ${mbroot}/scripts/helper.sh
